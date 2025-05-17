@@ -1,16 +1,26 @@
+/* === GLOBAL STYLES === */
+:root {
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fffaf5;
   color: #3d2a54;
 }
 
+/* === LAYOUT & TYPOGRAPHY === */
 .home-container {
-  padding: 1.5rem;
+  padding: var(--space-md);
 }
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,41 +29,73 @@ body {
 .title {
   font-size: 2.5rem;
   font-weight: 600;
-  color: #6C3483; /* Deep purple */
+  color: #6C3483;
 }
 
 .subtitle {
   font-size: 1.25rem;
-  margin-top: 0.5rem;
+  margin-top: var(--space-xs);
 }
 
+/* === PROFILE SHOWCASE === */
 .profile-showcase {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-xl);
 }
 
 .section-title {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #EFB43E; /* Golden yellow */
-  margin-bottom: 1rem;
+  color: #EFB43E;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title.slide-up,
+.donation-text.slide-up {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp 1.5s ease-in-out forwards;
 }
 
 .profile-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
+  gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    padding: 0 var(--space-sm);
+  }
+
+  .profile-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .profile-image {
+    height: 10rem; /* slightly shorter image for smaller screens */
+  }
 }
 
 .profile-card {
   background-color: white;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: var(--space-sm);
+  border-radius: var(--space-md);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .profile-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .profile-image {
@@ -65,57 +107,69 @@ body {
 
 .profile-name {
   font-size: 1.25rem;
-  margin-top: 1rem;
+  margin-top: var(--space-sm);
   font-weight: 600;
 }
 
-.profile-description {
+.profile-description,
+.profile-status {
   font-size: 0.875rem;
 }
 
 .profile-status {
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  color: #6C3483; /* Deep purple */
+  margin-top: var(--space-xs);
+  color: #6C3483;
   font-weight: 600;
 }
 
+/* === DONATION SECTION === */
 .donation-section {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-xl);
 }
 
 .donation-text {
-  margin-top: 1rem;
+  margin-top: var(--space-sm);
 }
 
-.donate-button {
-  margin-top: 1rem;
+.donate-button,
+.submit-button {
+  margin-top: var(--space-sm);
   padding: 0.75rem 2rem;
-  background-color: #6C3483; /* Deep purple */
+  background-color: #6C3483;
   color: white;
   border: none;
   border-radius: 9999px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .donate-button:hover {
-  background-color: #5a2b6e; /* Darker purple on hover */
+  background-color: #5a2b6e;
 }
 
+.donate-button:focus,
+.submit-button:focus {
+  outline: 3px solid #ead3a5;
+  outline-offset: 2px;
+}
+
+/* === CHATBOT SECTION === */
 .chatbot-section {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-xl);
 }
 
 .chatbot-text {
   font-size: 0.875rem;
 }
 
+/* === ANIMATION SECTION === */
 .animation-section {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-xl);
 }
 
 .fade-in {
@@ -129,34 +183,47 @@ body {
   }
 }
 
-/* === ADDED STYLES === */
+.slide-up {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp 1.5s ease-in-out forwards;
+}
 
-.expenditure-section, .contact-section {
-  padding: 2rem 1rem;
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* === EXPENDITURE & CONTACT SECTIONS === */
+.expenditure-section,
+.contact-section {
+  padding: var(--space-lg) var(--space-sm);
   background-color: #fff5e1;
-  margin-top: 2rem;
+  margin-top: var(--space-lg);
   border-top: 2px solid #ead3a5;
-  border-radius: 1rem;
+  border-radius: var(--space-md);
 }
 
 .expenditure-category {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-md);
 }
 
 .expenditure-category h3 {
   font-size: 1.25rem;
   color: #6C3483;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-xs);
 }
 
 .expenditure-category ul {
   list-style-type: disc;
-  padding-left: 1.5rem;
+  padding-left: var(--space-md);
   font-size: 0.95rem;
 }
 
 .contact-section p {
-  margin: 0.5rem 0;
+  margin: var(--space-xs) 0;
   font-size: 0.95rem;
 }
 
@@ -169,11 +236,10 @@ body {
   text-decoration: underline;
 }
 
-/* === REGISTRATION SECTION STYLES === */
-
+/* === REGISTRATION SECTION === */
 .registration-section {
-  margin: 2rem 0;
-  padding: 1.5rem;
+  margin: var(--space-lg) 0;
+  padding: var(--space-md);
   background-color: #fff8f2;
   border-radius: 12px;
 }
@@ -181,23 +247,72 @@ body {
 .registration-form input {
   display: block;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
   padding: 0.75rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
-.submit-button {
-  padding: 0.75rem 1.5rem;
-  background-color: #f77f00;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
 .success-message {
   color: green;
-  margin-top: 1rem;
+  margin-top: var(--space-sm);
+}
+
+/* === FORM CONTAINER === */
+.form-container {
+  max-width: 500px;
+  margin: var(--space-lg) auto;
+  padding: var(--space-lg);
+  background-color: #fff7f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.form-container input {
+  padding: 12px 16px;
+  border: 1.5px solid #f5a623;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: #f28800;
+  box-shadow: 0 0 0 3px rgba(242, 136, 0, 0.2);
+}
+
+.form-container button {
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #f28800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #d87400;
+}
+
+.form-container button:focus {
+  outline: 3px solid #ead3a5;
+  outline-offset: 2px;
+}
+
+.confirmation {
+  margin-top: var(--space-sm);
+  color: green;
+  font-weight: 500;
+  text-align: center;
 }
