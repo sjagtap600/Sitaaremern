@@ -83,9 +83,6 @@ backend/
     └── donationsController.js
 Set up environment variables in .env file:
 
-ini
-Copy
-Edit
 MONGO_URI=your_mongo_connection_string
 STRIPE_SECRET=your_stripe_secret_key
 CLIENT_URL=http://localhost:3000
