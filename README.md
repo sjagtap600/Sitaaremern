@@ -213,16 +213,14 @@ The Sitaare web application integrates a Dialogflow-powered chatbot to enhance u
 You can train your Dialogflow intents to respond to the following queries:
 
 Intent Name	Sample User Inputs	Bot Response (Suggested)
-Donation_Page_Intent	"How can I donate?"
-"Where is the donation page?"	"You can donate by visiting our Donate page. Just click on the 'Donate' button in the menu or go to /donate."
-About_Beneficiaries_Intent	"Who are the girls?"
-"Who do you support?"	"We support underprivileged girls by connecting them to opportunities and resources. You can view their profiles on the homepage."
-Location_Intent	"Where is Sitaare located?"
-"Which country are you in?"	"Sitaare is based in India, but we welcome global support!"
-Contact_Intent	"How do I contact you?"
-"Is there a support number?"	"You can reach out via our contact form or email us at support@sitaare.org."
-Volunteer_Intent	"Can I volunteer?"
-"I want to help personally"	"We appreciate your willingness to help! Please fill our volunteer form or contact us for more details."
+	"How can I donate?"
+	"Who are the girls?"
+"Who do you support?"
+"Where is Sitaare located?"
+	"How do I contact you?"
+"Is there a support number?"	
+"Can I volunteer?"
+"I want to help personally"	
 
 Contact
 For any issues, please contact [Shreeyash Jagtap / shreeyashjagtap07@gmail.com].
