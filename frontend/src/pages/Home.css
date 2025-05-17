@@ -168,3 +168,36 @@ body {
 .contact-section a:hover {
   text-decoration: underline;
 }
+
+/* === REGISTRATION SECTION STYLES === */
+
+.registration-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #fff8f2;
+  border-radius: 12px;
+}
+
+.registration-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.submit-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #f77f00;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.success-message {
+  color: green;
+  margin-top: 1rem;
+}

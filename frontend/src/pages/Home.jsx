@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Home.css'; // Import custom CSS file
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    address: '',
+    phone: ''
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    console.log('Form submitted:', formData);
+    // Reset form (optional)
+    setFormData({
+      name: '',
+      email: '',
+      address: '',
+      phone: ''
+    });
+  };
+
   return (
     <div className="home-container">
       {/* Header with Logo */}
@@ -13,30 +40,18 @@ export default function Home() {
 
       {/* Profile Showcase */}
       <section className="profile-showcase">
-  <h2 className="section-title">Adoptable Beneficiaries</h2>
-  <div className="profile-grid">
-    <div className="profile-card">
-      <img src="/assets/profile1.jpg" alt="Girl Lotus" className="profile-image" />
-      <h3 className="profile-name">Lotus</h3>
-      <p className="profile-description">Ready to learn, lead, and shine.</p>
-      <p className="profile-status">Status: Waiting for adoption</p>
-    </div>
-
-    <div className="profile-card">
-      <img src="/assets/profile2.jpg" alt="Girl Lilly" className="profile-image" />
-      <h3 className="profile-name">Lilly</h3>
-      <p className="profile-description">Ready to learn, lead, and shine.</p>
-      <p className="profile-status">Status: Waiting for adoption</p>
-    </div>
-
-    <div className="profile-card">
-      <img src="/assets/profile3.jpg" alt="Girl Rose" className="profile-image" />
-      <h3 className="profile-name">Rose</h3>
-      <p className="profile-description">Ready to learn, lead, and shine.</p>
-      <p className="profile-status">Status: Waiting for adoption</p>
-    </div>
-  </div>
-</section>
+        <h2 className="section-title">Adoptable Beneficiaries</h2>
+        <div className="profile-grid">
+          {['Lotus', 'Lilly', 'Rose'].map((name, index) => (
+            <div key={index} className="profile-card">
+              <img src={`/assets/profile${index + 1}.jpg`} alt={`Girl ${name}`} className="profile-image" />
+              <h3 className="profile-name">{name}</h3>
+              <p className="profile-description">Ready to learn, lead, and shine.</p>
+              <p className="profile-status">Status: Waiting for adoption</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Donation */}
       <section className="donation-section">
@@ -69,9 +84,7 @@ export default function Home() {
         <h2 className="section-title">About Project Sitaare</h2>
         <p>
           Project Sitaare is a one-of-a-kind orphanage and shelter home for girls aged 6 to 18,
-          offering more than just shelter—it’s a place where dreams take flight. Designed to be the
-          best orphanage for girls in Gujarat, Sitaare ensures safety, education, and holistic
-          development, empowering young girls to become confident, independent individuals.
+          offering more than just shelter—it’s a place where dreams take flight...
         </p>
         <h3>Why Project Sitaare?</h3>
         <ul>
@@ -79,13 +92,11 @@ export default function Home() {
         </ul>
         <h3>Our Vision</h3>
         <p>
-          To create a world where every girl has the opportunity to dream, learn, and succeed—
-          regardless of her past.
+          To create a world where every girl has the opportunity to dream, learn, and succeed—regardless of her past.
         </p>
         <h3>Our Mission</h3>
         <p>
-          To empower orphaned girls with the tools they need to become strong, independent women
-          who contribute positively to society.
+          To empower orphaned girls with the tools they need to become strong, independent women who contribute positively to society.
         </p>
         <h3>The Impact We Aim to Create</h3>
         <ul>
@@ -96,7 +107,7 @@ export default function Home() {
         </ul>
         <h3>Raising Strong Girls, Building Bright Futures</h3>
         <ul>
-          <li>More than a shelter – A nurturing home where girls thrive, not just survive</li>
+          <li>More than a shelter – A nurturing home where girls thrive</li>
           <li>Health & well-being – Nutritious meals, medical care, and emotional wellness programs</li>
           <li>Life skills & self-confidence – Leadership training, vocational skills, sports, and self-defense</li>
         </ul>
@@ -142,24 +153,47 @@ export default function Home() {
         <h2 className="section-title">Quick Registration</h2>
         <p>Please fill out this form to get involved with Project Sitaare.</p>
         <div className="form-container">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSd86Kz6hfkRJUpv5q-hXjla5vG92eSecyR9qoqmsmQ0_J9wAw/viewform?embedded=true"
-            width="100%"
-            height="954"
-            frameBorder="0"
-            marginHeight="0"
-            marginWidth="0"
-            title="Quick Registration Form"
-          >
-            Loading…
-          </iframe>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Your Address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Your Phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+            <button type="submit">Submit</button>
+          </form>
+          {submitted && <p className="confirmation">Thank you! Your details have been submitted.</p>}
         </div>
       </section>
 
       {/* Expenditure Section */}
       <section className="expenditure-section">
         <h2 className="section-title">Project Expenditure</h2>
-
         <div className="expenditure-category">
           <h3>Capital Expenditure (CapEx)</h3>
           <p>Total: ₹37,22,500</p>
