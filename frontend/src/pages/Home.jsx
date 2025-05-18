@@ -16,17 +16,34 @@ export default function Home() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    console.log('Form submitted:', formData);
-    // Reset form (optional)
-    setFormData({
-      name: '',
-      email: '',
-      address: '',
-      phone: ''
-    });
+    try {
+      const response = await fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+     if (response.ok) {
+  console.log("Submitted successfully"); // <-- Add this line
+  setSubmitted(true);
+  setFormData({
+    name: '',
+    email: '',
+    address: '',
+    phone: ''
+  });
+}
+ else {
+        const err = await response.json();
+        console.error('Failed to submit:', err);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -149,48 +166,47 @@ export default function Home() {
       </section>
 
       {/* Quick Registration Section */}
-<section className="registration-section">
-  <h2 className="section-title">Quick Registration</h2>
-  <p>Please fill out this form to get involved with Project Sitaare.</p>
-  <div className="form-container">
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="address"
-        placeholder="Your Address"
-        value={formData.address}
-        onChange={handleChange}
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Your Phone"
-        value={formData.phone}
-        onChange={handleChange}
-        required
-      />
-      <button type="submit">Submit</button>
-    </form>
-    {submitted && <p className="confirmation">Thank you! Your details have been submitted.</p>}
-  </div>
-</section>
-
+      <section className="registration-section">
+        <h2 className="section-title">Quick Registration</h2>
+        <p>Please fill out this form to get involved with Project Sitaare.</p>
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Your Address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Your Phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+            <button type="submit">Submit</button>
+          </form>
+          {submitted && <p className="confirmation">Thank you! Your details have been submitted.</p>}
+        </div>
+      </section>
 
       {/* Expenditure Section */}
       <section className="expenditure-section">
